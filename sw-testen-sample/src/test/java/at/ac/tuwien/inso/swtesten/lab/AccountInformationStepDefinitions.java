@@ -13,33 +13,31 @@ public class AccountInformationStepDefinitions {
 
     AccountInformationSeleniumHelper page = new AccountInformationSeleniumHelper();
 
-    @Given("^I login with username \"([^\"]*)\" and password \"([^\"]*)\"$")
+    @Given("^\\[AccountInformation\\] I login with username \"([^\"]*)\" and password \"([^\"]*)\"$")
     public void iLoginWithUsernameAndPassword(String arg0, String arg1) throws Throwable {
         page.setUp();
-        page.login();
     }
 
     @When("^I navigate to my profile$")
     public void iNavigateToMyProfile() throws Throwable {
-        // Write code here that turns the phrase above into concrete actions
-        throw new PendingException();
+        page.showProfile();
     }
 
     @And("^I change my address to \"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\"$")
     public void iChangeMyAddressTo(String arg0, String arg1, String arg2, String arg3) throws Throwable {
-        // Write code here that turns the phrase above into concrete actions
-        throw new PendingException();
+        page.setProfileFields(arg0, arg1, arg2, arg3);
     }
 
     @And("^I confirm my address changes$")
     public void iConfirmMyAddressChanges() throws Throwable {
-        // Write code here that turns the phrase above into concrete actions
-        throw new PendingException();
+        page.submitProfileChanges();
     }
 
-    @Then("^I can see my new address on my profile$")
-    public void iCanSeeMyNewAddressOnMyProfile() throws Throwable {
-        // Write code here that turns the phrase above into concrete actions
-        throw new PendingException();
+    @Then("^I can see my new address \"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\" on my profile$")
+    public void iCanSeeMyNewAddressOnMyProfile(String arg0, String arg1, String arg2, String arg3) throws Throwable {
+        System.out.printf("args: " + arg0, arg1, arg2, arg3);
+
+        page.assertProfileChanges(arg0, arg1, arg2, arg3);
+        page.shutDown();
     }
 }
